@@ -20,8 +20,13 @@ dependencies:
     - sudo apt-get install g++-arm-linux-gnueabihf
     - sudo apt-get install gdb-multiarch
     - mkdir ~/cc/
-    - cd ~/cc ; git clone https://github.com/raspberrypi/tools.git
+    - cd ~/cc ; git clone https://github.com/raspberrypi/tools
     - cd ~/cc/tools/ ; git checkout d820ab9c21969013b4e56c7e9cba25518afcdd44
+    - mkdir ~/rasp_sysroot/
+    - cd ~/rasp_sysroot/ ; git clone https://github.com/sdhibit/docker-rpi-raspbian
+    - cd ~/rasp_sysroot/docker-rpi-raspbian/ ; git checkout b05275e230317417b7575790789707c21cc639c1
+    - cd ~/rasp_sysroot/docker-rpi-raspbian/ ; xz -dv raspbian.2015.05.05.tar.xz ; mkdir sysroot ; cd sysroot ; tar -xvf ../raspbian.2015.05.05.tar
+    - cd ~/rasp_sysroot/docker-rpi-raspbian/ ; ls -al ; ls -al sysroot
 compile:
   override:
     - echo dummy
