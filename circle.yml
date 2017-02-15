@@ -12,6 +12,7 @@ machine:
     _CC: $TOOL_PREFIX-gcc
     _LD: $TOOL_PREFIX-ld
     _PKG_CONFIG_PATH: ~/pipkgcfg
+    _s_: "/home/ubuntu/src/"
 dependencies:
   pre:
     - sudo apt-get update
@@ -29,8 +30,9 @@ dependencies:
     - mkdir -p ~/pipkgcfg
     - ls -al "$_SYSROOT_"
 
-    - echo 'export PATH="$_PATH";export PKG_CONFIG_PATH="$_PKG_CONFIG_PATH";export CC="$_CC";export CXX="$_CXX"export AR="$_AR";export RANLIB="$_RANLIB";export LD="$_LD"' > ~/pp
+    - echo 'export PATH="$_PATH";export PKG_CONFIG_PATH="$_PKG_CONFIG_PATH";export CC="$_CC";export CXX="$_CXX";export AR="$_AR";export RANLIB="$_RANLIB";export LD="$_LD"' > ~/pp
     - chmod u+x ~/pp
+    - mkdir -p $_s_
 compile:
   override:
     - echo dummy
