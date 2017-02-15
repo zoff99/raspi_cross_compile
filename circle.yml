@@ -4,6 +4,7 @@ machine:
   environment:
     MAKEFLAGS: "j4"
     PATH: ~/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin:~/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/arm-linux-gnueabihf/bin:$PATH
+    _SYSROOT_: ~/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/arm-linux-gnueabihf/sysroot
     TOOL_PREFIX: arm-linux-gnueabihf
     CXX: $TOOL_PREFIX-g++
     AR: $TOOL_PREFIX-ar
@@ -23,6 +24,7 @@ dependencies:
     - cd ~/rasp_sysroot/docker-rpi-raspbian/ ; git checkout b05275e230317417b7575790789707c21cc639c1
     - cd ~/rasp_sysroot/docker-rpi-raspbian/ ; xz -dv raspbian.*.xz ; mkdir sysroot ; cd sysroot ; tar -xvf ../raspbian.*.tar
     - cd ~/rasp_sysroot/docker-rpi-raspbian/ ; ls -al ; ls -al sysroot
+    - ls -al "$_SYSROOT_"
 compile:
   override:
     - echo dummy
