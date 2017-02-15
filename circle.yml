@@ -22,19 +22,18 @@ dependencies:
     - cd ~/cc ; git clone https://github.com/raspberrypi/tools
     - cd ~/cc/tools/ ; git checkout d820ab9c21969013b4e56c7e9cba25518afcdd44
 
-    - mkdir ~/rasp_sysroot/
-    - cd ~/rasp_sysroot/ ; git clone https://github.com/sdhibit/docker-rpi-raspbian
-    - cd ~/rasp_sysroot/docker-rpi-raspbian/ ; git checkout b05275e230317417b7575790789707c21cc639c1
-    - cd ~/rasp_sysroot/docker-rpi-raspbian/ ; xz -dv raspbian.*.xz ; mkdir sysroot ; cd sysroot ; tar -xvf ../raspbian.*.tar
-    - cd ~/rasp_sysroot/docker-rpi-raspbian/ ; ls -al ; ls -al sysroot
+    #- mkdir ~/rasp_sysroot/
+    #- cd ~/rasp_sysroot/ ; git clone https://github.com/sdhibit/docker-rpi-raspbian
+    #- cd ~/rasp_sysroot/docker-rpi-raspbian/ ; git checkout b05275e230317417b7575790789707c21cc639c1
+    #- cd ~/rasp_sysroot/docker-rpi-raspbian/ ; xz -dv raspbian.*.xz ; mkdir sysroot ; cd sysroot ; tar -xvf ../raspbian.*.tar
+    #- cd ~/rasp_sysroot/docker-rpi-raspbian/ ; ls -al ; ls -al sysroot
+
     - mkdir -p "$_PKG_CONFIG_PATH"
     - ls -al "$_SYSROOT_"
+    - mkdir -p $_s_
 
     - echo 'export PATH="$_PATH";export PKG_CONFIG_PATH="$_PKG_CONFIG_PATH";export CC="$_CC";export CXX="$_CXX";export AR="$_AR";export RANLIB="$_RANLIB";export LD="$_LD"' > ~/pp
     - chmod u+x ~/pp
-    - cat ~/pp
-    - ls -al ~/pp
-    - mkdir -p $_s_
 
 compile:
   override:
