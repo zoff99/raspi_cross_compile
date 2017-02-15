@@ -1,6 +1,6 @@
 machine:
   timezone:
-    Europe/Vienna
+    Europe/Berlin
   environment:
     MAKEFLAGS: "j4"
     _PATH: "/home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin:/home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/arm-linux-gnueabihf/bin:$PATH"
