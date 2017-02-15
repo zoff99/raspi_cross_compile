@@ -3,14 +3,15 @@ machine:
     Europe/Vienna
   environment:
     MAKEFLAGS: "j4"
-    PATH: ~/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin:~/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/arm-linux-gnueabihf/bin:$PATH
+    _PATH: ~/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin:~/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/arm-linux-gnueabihf/bin:$PATH
     _SYSROOT_: ~/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/arm-linux-gnueabihf/sysroot
     TOOL_PREFIX: arm-linux-gnueabihf
-    CXX: $TOOL_PREFIX-g++
-    AR: $TOOL_PREFIX-ar
-    RANLIB: $TOOL_PREFIX-ranlib
-    CC: $TOOL_PREFIX-gcc
-    LD: $TOOL_PREFIX-ld
+    _CXX: $TOOL_PREFIX-g++
+    _AR: $TOOL_PREFIX-ar
+    _RANLIB: $TOOL_PREFIX-ranlib
+    _CC: $TOOL_PREFIX-gcc
+    _LD: $TOOL_PREFIX-ld
+    _PKG_CONFIG_PATH: ~/pipkgcfg
 dependencies:
   pre:
     - sudo apt-get update
@@ -19,12 +20,17 @@ dependencies:
     - mkdir ~/cc/
     - cd ~/cc ; git clone https://github.com/raspberrypi/tools
     - cd ~/cc/tools/ ; git checkout d820ab9c21969013b4e56c7e9cba25518afcdd44
+
     - mkdir ~/rasp_sysroot/
     - cd ~/rasp_sysroot/ ; git clone https://github.com/sdhibit/docker-rpi-raspbian
     - cd ~/rasp_sysroot/docker-rpi-raspbian/ ; git checkout b05275e230317417b7575790789707c21cc639c1
     - cd ~/rasp_sysroot/docker-rpi-raspbian/ ; xz -dv raspbian.*.xz ; mkdir sysroot ; cd sysroot ; tar -xvf ../raspbian.*.tar
     - cd ~/rasp_sysroot/docker-rpi-raspbian/ ; ls -al ; ls -al sysroot
+    - mkdir -p ~/pipkgcfg
     - ls -al "$_SYSROOT_"
+
+    - echo 'export PATH="$_PATH";export PKG_CONFIG_PATH="$_PKG_CONFIG_PATH";export CC="$_CC";export CXX="$_CXX"export AR="$_AR";export RANLIB="$_RANLIB";export LD="$_LD"' > ~/pp
+    - chmod u+x ~/pp
 compile:
   override:
     - echo dummy
@@ -32,6 +38,7 @@ compile:
     - type -a arm-linux-gnueabihf-gcc
     - arm-linux-gnueabihf-g++ -v
     - arm-linux-gnueabihf-gcc -v
+    -
 test:
   override:
     - echo dummy
