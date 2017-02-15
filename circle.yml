@@ -4,6 +4,12 @@ machine:
   environment:
     MAKEFLAGS: "j4"
     PATH: ~/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin:~/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/arm-linux-gnueabihf/bin:$PATH
+    TOOL_PREFIX: arm-linux-gnueabihf
+    CXX: $TOOL_PREFIX-g++
+    AR: $TOOL_PREFIX-ar
+    RANLIB: $TOOL_PREFIX-ranlib
+    CC: $TOOL_PREFIX-gcc
+    LD: $TOOL_PREFIX-ld
 dependencies:
   pre:
     - sudo apt-get update
