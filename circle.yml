@@ -13,12 +13,8 @@ machine:
 dependencies:
   pre:
     - sudo apt-get update
-    - sudo apt-get install build-essential libtool autotools-dev automake checkinstall check git yasm libv4lconvert0 libv4l-dev
-    - sudo apt-get install libopus-dev libvpx-dev pkg-config
-    - sudo apt-get install linux-generic
-    - sudo apt-get install build-essential
-    - sudo apt-get install g++-arm-linux-gnueabihf
-    - sudo apt-get install gdb-multiarch
+    - sudo apt-get install build-essential libtool autotools-dev automake git
+
     - mkdir ~/cc/
     - cd ~/cc ; git clone https://github.com/raspberrypi/tools
     - cd ~/cc/tools/ ; git checkout d820ab9c21969013b4e56c7e9cba25518afcdd44
