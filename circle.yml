@@ -27,7 +27,7 @@ dependencies:
     - cd ~/rasp_sysroot/docker-rpi-raspbian/ ; git checkout b05275e230317417b7575790789707c21cc639c1
     - cd ~/rasp_sysroot/docker-rpi-raspbian/ ; xz -dv raspbian.*.xz ; mkdir sysroot ; cd sysroot ; tar -xvf ../raspbian.*.tar
     - cd ~/rasp_sysroot/docker-rpi-raspbian/ ; ls -al ; ls -al sysroot
-    - mkdir -p ~/pipkgcfg
+    - mkdir -p "$_PKG_CONFIG_PATH"
     - ls -al "$_SYSROOT_"
 
     - echo 'export PATH="$_PATH";export PKG_CONFIG_PATH="$_PKG_CONFIG_PATH";export CC="$_CC";export CXX="$_CXX";export AR="$_AR";export RANLIB="$_RANLIB";export LD="$_LD"' > ~/pp
