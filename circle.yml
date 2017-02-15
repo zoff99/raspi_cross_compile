@@ -19,7 +19,7 @@ dependencies:
 compile:
   override:
     - echo dummy
-    - type -a arm-linux-gnueabihf
+    - type -a arm-linux-gnueabihf-g++
     - type -a arm-linux-gnueabihf-gcc
     - arm-linux-gnueabihf-g++ -v
     - arm-linux-gnueabihf-gcc -v
