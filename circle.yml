@@ -3,8 +3,8 @@ machine:
     Europe/Vienna
   environment:
     MAKEFLAGS: "j4"
-    _PATH: ~/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin:~/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/arm-linux-gnueabihf/bin:$PATH
-    _SYSROOT_: ~/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/arm-linux-gnueabihf/sysroot
+    _PATH: "/home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin:/home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/arm-linux-gnueabihf/bin:$PATH"
+    _SYSROOT_: "/home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/arm-linux-gnueabihf/sysroot"
     TOOL_PREFIX: arm-linux-gnueabihf
     _CXX: $TOOL_PREFIX-g++
     _AR: $TOOL_PREFIX-ar
