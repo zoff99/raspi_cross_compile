@@ -7,6 +7,7 @@ machine:
     _SYSROOT_: "/home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/arm-linux-gnueabihf/sysroot"
     TOOL_PREFIX: arm-linux-gnueabihf
     _TARGET_: arm-linux-gnueabi
+    _HOST_: arm-linux-gnueabi
     _CXX: $TOOL_PREFIX-g++
     _AR: $TOOL_PREFIX-ar
     _RANLIB: $TOOL_PREFIX-ranlib
@@ -48,7 +49,7 @@ compile:
     - . ~/pp;cd $_s_/yasm/;autoreconf -fi
     - . ~/pp;rm -Rf ~/build/
     - . ~/pp;mkdir -p ~/build/
-    - . ~/pp;cd ~/build/;$_s_/yasm/configure --prefix="$_SYSROOT"/usr --disable-shared --disable-soname-versions --with-sysroot="$_SYSROOT_" --host="$_TARGET_"
+    - . ~/pp;cd ~/build/;$_s_/yasm/configure --prefix="$_SYSROOT"/usr --disable-shared --disable-soname-versions --with-sysroot="$_SYSROOT_" --host="$_HOST_" --target="$_TARGET_"
     - . ~/pp;cd ~/build/;make -j4
     - . ~/pp;cd ~/build/;make install
 
