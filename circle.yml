@@ -13,7 +13,7 @@ machine:
     _RANLIB: $TOOL_PREFIX-ranlib
     _CC: $TOOL_PREFIX-gcc
     _LD: $TOOL_PREFIX-ld
-    _PKG_CONFIG_PATH: ~/pipkgcfg
+    _PKG_CONFIG_PATH: "/home/ubuntu/pipkgcfg"
     _s_: "/home/ubuntu/src/"
 dependencies:
   pre:
