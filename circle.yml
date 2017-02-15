@@ -38,7 +38,31 @@ compile:
     - type -a arm-linux-gnueabihf-gcc
     - arm-linux-gnueabihf-g++ -v
     - arm-linux-gnueabihf-gcc -v
-    -
+
+  - . ~/pp;cd $_s_;git clone --depth=1 --branch=v1.6.0 https://github.com/webmproject/libvpx.git
+  - . ~/pp;rm -Rf ~/build/
+  - . ~/pp;mkdir -p ~/build/
+  - . ~/pp;cd ~/build/;$_s_/libvpx/configure --prefix="$_SYSROOT"/usr --host="$TOOL_PREFIX" --with-sysroot="$_SYSROOT_" --disable-examples --disable-unit-tests
+  - . ~/pp;cd ~/build/;make -j4
+  - . ~/pp;cd ~/build/;make install
+
+
+  - . ~/pp;cd $_s_;git clone --depth=1 --branch=v1.1.3 https://github.com/xiph/opus.git
+  - . ~/pp;cd $_s_/opus/;autoreconf -fi
+  - . ~/pp;rm -Rf ~/build/
+  - . ~/pp;mkdir -p ~/build/
+  - . ~/pp;cd ~/build/;$_s_/opus/configure --prefix="$_SYSROOT"/usr --disable-shared --disable-soname-versions --host="$TOOL_PREFIX" --with-sysroot="$_SYSROOT_"
+  - . ~/pp;cd ~/build/;make -j4
+  - . ~/pp;cd ~/build/;make install
+    
+    
+  - . ~/pp;cd $_s_;git clone --depth=1 --branch=1.0.11 https://github.com/jedisct1/libsodium.git
+  - . ~/pp;cd $_s_/libsodium/;autoreconf -fi
+  - . ~/pp;rm -Rf ~/build/
+  - . ~/pp;mkdir -p ~/build/
+  - . ~/pp;cd ~/build/;$_s_/libsodium/configure --prefix="$_SYSROOT"/usr --disable-shared --disable-soname-versions --host="$TOOL_PREFIX" --with-sysroot="$_SYSROOT_" --enable-minimal --disable-pie
+  - . ~/pp;cd ~/build/;make -j4
+  - . ~/pp;cd ~/build/;make install
 test:
   override:
     - echo dummy
