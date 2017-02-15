@@ -6,6 +6,7 @@ machine:
     _PATH: "/home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin:/home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/arm-linux-gnueabihf/bin:$PATH"
     _SYSROOT_: "/home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/arm-linux-gnueabihf/sysroot"
     TOOL_PREFIX: arm-linux-gnueabihf
+    _TARGET_: arm-linux-gnueabi
     _CXX: $TOOL_PREFIX-g++
     _AR: $TOOL_PREFIX-ar
     _RANLIB: $TOOL_PREFIX-ranlib
@@ -42,10 +43,19 @@ compile:
     - . ~/pp;arm-linux-gnueabihf-g++ -v
     - . ~/pp;arm-linux-gnueabihf-gcc -v
 
+
+    - . ~/pp;cd $_s_;git clone --depth=1 --branch=v1.3.0 https://github.com/yasm/yasm.git
+    - . ~/pp;cd $_s_/yasm/;autoreconf -fi
+    - . ~/pp;rm -Rf ~/build/
+    - . ~/pp;mkdir -p ~/build/
+    - . ~/pp;cd ~/build/;$_s_/yasm/configure --prefix="$_SYSROOT"/usr --disable-shared --disable-soname-versions --with-sysroot="$_SYSROOT_" --host="$_TARGET_"
+    - . ~/pp;cd ~/build/;make -j4
+    - . ~/pp;cd ~/build/;make install
+
     - . ~/pp;cd $_s_;git clone --depth=1 --branch=v1.6.0 https://github.com/webmproject/libvpx.git
     - . ~/pp;rm -Rf ~/build/
     - . ~/pp;mkdir -p ~/build/
-    - . ~/pp;cd ~/build/;$_s_/libvpx/configure --prefix="$_SYSROOT"/usr --disable-examples --disable-unit-tests
+    - . ~/pp;cd ~/build/;$_s_/libvpx/configure --prefix="$_SYSROOT"/usr --target="$_TARGET_" --disable-examples --disable-unit-tests
     - . ~/pp;cd ~/build/;make -j4
     - . ~/pp;cd ~/build/;make install
 
