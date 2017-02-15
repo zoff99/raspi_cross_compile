@@ -38,11 +38,10 @@ dependencies:
 
 compile:
   override:
-    - echo dummy
-    - type -a arm-linux-gnueabihf-g++
-    - type -a arm-linux-gnueabihf-gcc
-    - arm-linux-gnueabihf-g++ -v
-    - arm-linux-gnueabihf-gcc -v
+    - . ~/pp;type -a arm-linux-gnueabihf-g++
+    - . ~/pp;type -a arm-linux-gnueabihf-gcc
+    - . ~/pp;arm-linux-gnueabihf-g++ -v
+    - . ~/pp;arm-linux-gnueabihf-gcc -v
 
     - . ~/pp;cd $_s_;git clone --depth=1 --branch=v1.6.0 https://github.com/webmproject/libvpx.git
     - . ~/pp;rm -Rf ~/build/
