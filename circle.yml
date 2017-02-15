@@ -19,6 +19,7 @@ dependencies:
   pre:
     - sudo apt-get update
     - sudo apt-get install build-essential libtool autotools-dev automake git
+    - sudo apt-get install yasm
 
     - mkdir ~/cc/
     - cd ~/cc ; git clone https://github.com/raspberrypi/tools
