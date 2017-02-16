@@ -49,6 +49,9 @@ dependencies:
     - echo 'export PATH="$_PATH";export PKG_CONFIG_PATH="$_PKG_CONFIG_PATH";export CC="$_CC";export CXX="$_CXX";export AR="$_AR";export RANLIB="$_RANLIB";export LD="$_LD"' > ~/pp
     - chmod u+x ~/pp
 
+    - printf '#! /bin/bash\n. ~/pp;rm -Rf ~/build/\nmkdir -p ~/build/\ncd ~/build/;$_s_/"$1"/configure $* && make && make install\n' > ~/do_compile.sh
+    - chmod a+rx ~/do_compile.sh
+    - cat ~/do_compile.sh
 compile:
   override:
     - . ~/pp;type -a arm-linux-gnueabihf-g++
@@ -59,11 +62,8 @@ compile:
 
     - . ~/pp;cd $_s_;git clone --depth=1 --branch=v1.3.0 https://github.com/yasm/yasm.git
     - . ~/pp;cd $_s_/yasm/;autoreconf -fi
-    - . ~/pp;rm -Rf ~/build/
-    - . ~/pp;mkdir -p ~/build/
-    - . ~/pp;cd ~/build/;$_s_/yasm/configure --prefix="$_SYSROOT_"/usr --disable-shared --disable-soname-versions --with-sysroot="$_SYSROOT_" --host="$_HOST_" --target="$_TARGET_"
-    - . ~/pp;cd ~/build/;make
-    - . ~/pp;cd ~/build/;make install
+    - bash -x ~/do_compile.sh "yasm" --prefix="$_SYSROOT_"/usr --disable-shared --disable-soname-versions --with-sysroot="$_SYSROOT_" --host="$_HOST_" --target="$_TARGET_"
+    - ~/do_compile.sh "yasm" --prefix="$_SYSROOT_"/usr --disable-shared --disable-soname-versions --with-sysroot="$_SYSROOT_" --host="$_HOST_" --target="$_TARGET_"
 
     - . ~/pp;cd $_s_;git clone --depth=1 --branch=v1.6.0 https://github.com/webmproject/libvpx.git
     - . ~/pp;rm -Rf ~/build/
