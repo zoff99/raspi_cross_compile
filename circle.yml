@@ -63,9 +63,11 @@ compile:
     - . ~/pp;cd $_s_/libsodium/;autoreconf -fi
     - ~/do_compile.sh "libsodium" --prefix="$_SYSROOT_"/usr --disable-shared --disable-soname-versions --target="$TOOL_PREFIX" --with-sysroot="$_SYSROOT_" --host="$TOOL_PREFIX" --enable-minimal --disable-pie
 
+    - . ~/pp;cd $_s_;git clone https://github.com/TokTok/c-toxcore
+    - . ~/pp;cd $_s_/c-toxcore/;git checkout 895de7ef26e7617769f2271345e414545c2581f8 # v0.1.6
+    - . ~/pp;cd $_s_/c-toxcore/;autoreconf -fi
+    - ~/do_compile.sh "c-toxcore" --prefix="$_SYSROOT_"/usr --disable-soname-versions --host="$TOOL_PREFIX" --with-sysroot="$_SYSROOT_" --disable-testing --disable-rt
 test:
   override:
     - echo dummy
-
-
 
