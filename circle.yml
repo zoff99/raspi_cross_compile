@@ -77,7 +77,7 @@ compile:
     - . ~/pp;cd $_s_/opus/;autoreconf -fi
     - . ~/pp;rm -Rf ~/build/
     - . ~/pp;mkdir -p ~/build/
-    - . ~/pp;cd ~/build/;$_s_/opus/configure --prefix="$_SYSROOT_"/usr --disable-shared --disable-soname-versions --target="$_TARGET_" --with-sysroot="$_SYSROOT_"
+    - . ~/pp;cd ~/build/;$_s_/opus/configure --prefix="$_SYSROOT_"/usr --disable-shared --disable-soname-versions --target="$TOOL_PREFIX" --with-sysroot="$_SYSROOT_" --host="$TOOL_PREFIX"
     - . ~/pp;cd ~/build/;make
     - . ~/pp;cd ~/build/;make install
     
@@ -86,7 +86,7 @@ compile:
     - . ~/pp;cd $_s_/libsodium/;autoreconf -fi
     - . ~/pp;rm -Rf ~/build/
     - . ~/pp;mkdir -p ~/build/
-    - . ~/pp;cd ~/build/;$_s_/libsodium/configure --prefix="$_SYSROOT_"/usr --disable-shared --disable-soname-versions --target="$_TARGET_" --with-sysroot="$_SYSROOT_" --enable-minimal --disable-pie
+    - . ~/pp;cd ~/build/;$_s_/libsodium/configure --prefix="$_SYSROOT_"/usr --disable-shared --disable-soname-versions --target="$TOOL_PREFIX" --with-sysroot="$_SYSROOT_" --host="$TOOL_PREFIX" --enable-minimal --disable-pie
     - . ~/pp;cd ~/build/;make
     - . ~/pp;cd ~/build/;make install
 test:
