@@ -24,18 +24,6 @@ dependencies:
     - cd ~/cc ; git clone https://github.com/raspberrypi/tools
     - cd ~/cc/tools/ ; git checkout d820ab9c21969013b4e56c7e9cba25518afcdd44
 
-    #- cd /home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin ; ln -s arm-linux-gnueabihf-cc cc
-    #- cd /home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin ; ln -s arm-linux-gnueabihf-gcc gcc
-    #- cd /home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin ; ln -s arm-linux-gnueabihf-c++ c++
-    #- cd /home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin ; ln -s arm-linux-gnueabihf-g++ g++
-    #- cd /home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin ; ln -s arm-linux-gnueabihf-ld ld
-    #- cd /home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin ; ln -s arm-linux-gnueabihf-nm nm
-    #- cd /home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin ; ln -s arm-linux-gnueabihf-ar ar
-    #- cd /home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin ; ln -s arm-linux-gnueabihf-as as
-    #- cd /home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin ; ln -s arm-linux-gnueabihf-addr2line addr2line
-    #- cd /home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin ; ln -s arm-linux-gnueabihf-objcopy objcopy
-    #- cd /home/ubuntu/cc/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin ; ln -s arm-linux-gnueabihf-objdump objdump
-
     #- mkdir ~/rasp_sysroot/
     #- cd ~/rasp_sysroot/ ; git clone https://github.com/sdhibit/docker-rpi-raspbian
     #- cd ~/rasp_sysroot/docker-rpi-raspbian/ ; git checkout b05275e230317417b7575790789707c21cc639c1
@@ -62,34 +50,19 @@ compile:
 
     - . ~/pp;cd $_s_;git clone --depth=1 --branch=v1.3.0 https://github.com/yasm/yasm.git
     - . ~/pp;cd $_s_/yasm/;autoreconf -fi
-    - bash -x ~/do_compile.sh "yasm" --prefix="$_SYSROOT_"/usr --disable-shared --disable-soname-versions --with-sysroot="$_SYSROOT_" --host="$_HOST_" --target="$_TARGET_"
     - ~/do_compile.sh "yasm" --prefix="$_SYSROOT_"/usr --disable-shared --disable-soname-versions --with-sysroot="$_SYSROOT_" --host="$_HOST_" --target="$_TARGET_"
 
     - . ~/pp;cd $_s_;git clone --depth=1 --branch=v1.6.0 https://github.com/webmproject/libvpx.git
-    - . ~/pp;rm -Rf ~/build/
-    - . ~/pp;mkdir -p ~/build/
-    #- . ~/pp;cd ~/build/;$_s_/libvpx/configure --prefix="$_SYSROOT_"/usr --disable-examples --disable-unit-tests --target=armv7-linux-gcc --extra-cflags="--sysroot=$_SYSROOT_"
-    - . ~/pp;cd ~/build/;export CROSS="arm-linux-gnueabihf-" ; $_s_/libvpx/configure --prefix="$_SYSROOT_"/usr --disable-examples --disable-unit-tests --target=generic-gnu --extra-cflags="--sysroot=$_SYSROOT_"
-    - . ~/pp;cd ~/build/;make
-    - . ~/pp;cd ~/build/;make install
-
+    - export CROSS="arm-linux-gnueabihf-" ; ~/do_compile.sh "libvpx" --prefix="$_SYSROOT_"/usr --disable-examples --disable-unit-tests --target=generic-gnu --extra-cflags="--sysroot=$_SYSROOT_"
 
     - . ~/pp;cd $_s_;git clone --depth=1 --branch=v1.1.3 https://github.com/xiph/opus.git
     - . ~/pp;cd $_s_/opus/;autoreconf -fi
-    - . ~/pp;rm -Rf ~/build/
-    - . ~/pp;mkdir -p ~/build/
-    - . ~/pp;cd ~/build/;$_s_/opus/configure --prefix="$_SYSROOT_"/usr --disable-shared --disable-soname-versions --target="$TOOL_PREFIX" --with-sysroot="$_SYSROOT_" --host="$TOOL_PREFIX"
-    - . ~/pp;cd ~/build/;make
-    - . ~/pp;cd ~/build/;make install
-    
-    
+    - ~/do_compile.sh "opus" --prefix="$_SYSROOT_"/usr --disable-shared --disable-soname-versions --target="$TOOL_PREFIX" --with-sysroot="$_SYSROOT_" --host="$TOOL_PREFIX"
+
     - . ~/pp;cd $_s_;git clone --depth=1 --branch=1.0.11 https://github.com/jedisct1/libsodium.git
     - . ~/pp;cd $_s_/libsodium/;autoreconf -fi
-    - . ~/pp;rm -Rf ~/build/
-    - . ~/pp;mkdir -p ~/build/
-    - . ~/pp;cd ~/build/;$_s_/libsodium/configure --prefix="$_SYSROOT_"/usr --disable-shared --disable-soname-versions --target="$TOOL_PREFIX" --with-sysroot="$_SYSROOT_" --host="$TOOL_PREFIX" --enable-minimal --disable-pie
-    - . ~/pp;cd ~/build/;make
-    - . ~/pp;cd ~/build/;make install
+    - ~/do_compile.sh "libsodium" --prefix="$_SYSROOT_"/usr --disable-shared --disable-soname-versions --target="$TOOL_PREFIX" --with-sysroot="$_SYSROOT_" --host="$TOOL_PREFIX" --enable-minimal --disable-pie
+
 test:
   override:
     - echo dummy
