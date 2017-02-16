@@ -36,6 +36,7 @@ dependencies:
     - mkdir -p "RASPI_PKGSDIR"
     - ls -al "$RASPI_SYSROOT_"
     - mkdir -p "$RASPI_s_"
+    - mkdir -p "RASPI_PKGSDIR"
 
     - echo 'export PKGSDIR="$RASPI_PKGSDIR";export INSTALL_DEST="$RASPI_INSTALL_DEST";export PKG_CONFIG_PATH="$RASPI_PKG_CONFIG_PATH";export PATH="$RASPI_PATH";export CC="$RASPI_CC";export CXX="$RASPI_CXX";export AR="$RASPI_AR";export RANLIB="$RASPI_RANLIB";export LD="$RASPI_LD"' > ~/pp
     - chmod u+x ~/pp
@@ -44,7 +45,7 @@ dependencies:
     - chmod a+rx ~/do_compile.sh
     - cat ~/do_compile.sh
 
-    - printf '#! /bin/bash\n. ~/pp;rm -Rf "$INSTALL_DEST"\narg1_="$1";shift;cd ~/build/;$RASPI_s_/"$arg1_"/configure $* && make && make install && cd "$INSTALL_DEST" && tar -czvf "$PKGSDIR""/"pkg_"$arg1_".tar.gz && rm -Rf "$INSTALL_DEST" \n' > ~/do_package.sh
+    - printf '#! /bin/bash\n. ~/pp;rm -Rf "$INSTALL_DEST"\narg1_="$1";shift;cd ~/build/;$RASPI_s_/"$arg1_"/configure $* && make && make install && cd "$INSTALL_DEST" && tar -czvf "$PKGSDIR""/"pkg_"$arg1_".tar.gz . && rm -Rf "$INSTALL_DEST" \n' > ~/do_package.sh
     - chmod a+rx ~/do_package.sh
     - cat ~/do_package.sh
 compile:
