@@ -36,7 +36,7 @@ dependencies:
     - mkdir -p "RASPI_PKGSDIR"
     - ls -al "$RASPI_SYSROOT_"
     - mkdir -p "$RASPI_s_"
-    - mkdir -p "RASPI_PKGSDIR"
+    - mkdir -p "$RASPI_PKGSDIR"
 
     - echo 'export PKGSDIR="$RASPI_PKGSDIR";export INSTALL_DEST="$RASPI_INSTALL_DEST";export PKG_CONFIG_PATH="$RASPI_PKG_CONFIG_PATH";export PATH="$RASPI_PATH";export CC="$RASPI_CC";export CXX="$RASPI_CXX";export AR="$RASPI_AR";export RANLIB="$RASPI_RANLIB";export LD="$RASPI_LD"' > ~/pp
     - chmod u+x ~/pp
