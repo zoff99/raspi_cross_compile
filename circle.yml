@@ -60,23 +60,23 @@ compile:
 
     - . ~/pp;cd $RASPI_s_;git clone --depth=1 --branch=v1.6.0 https://github.com/webmproject/libvpx.git
     - export CROSS="arm-linux-gnueabihf-" ; ~/do_compile.sh "libvpx" --prefix="$RASPI_SYSROOT_"/usr --disable-examples --disable-unit-tests --target=generic-gnu --extra-cflags="--sysroot=$RASPI_SYSROOT_"
-    - export CROSS="arm-linux-gnueabihf-" ; ~/do_package.sh "libvpx" --prefix="$RASPI_SYSROOT_"/usr --disable-examples --disable-unit-tests --target=generic-gnu --extra-cflags="--sysroot=$RASPI_SYSROOT_"
+    - export CROSS="arm-linux-gnueabihf-" ; ~/do_package.sh "libvpx" --prefix="$INSTALL_DEST" --disable-examples --disable-unit-tests --target=generic-gnu --extra-cflags="--sysroot=$RASPI_SYSROOT_"
 
     - . ~/pp;cd $RASPI_s_;git clone --depth=1 --branch=v1.1.3 https://github.com/xiph/opus.git
     - . ~/pp;cd $RASPI_s_/opus/;autoreconf -fi
     - ~/do_compile.sh "opus" --prefix="$RASPI_SYSROOT_"/usr --disable-shared --disable-soname-versions --target="$RASPI_TOOL_PREFIX" --with-sysroot="$RASPI_SYSROOT_" --host="$RASPI_TOOL_PREFIX"
-    - ~/do_package.sh "opus" --prefix="$RASPI_SYSROOT_"/usr --disable-shared --disable-soname-versions --target="$RASPI_TOOL_PREFIX" --with-sysroot="$RASPI_SYSROOT_" --host="$RASPI_TOOL_PREFIX"
+    - ~/do_package.sh "opus" --prefix="$INSTALL_DEST" --disable-shared --disable-soname-versions --target="$RASPI_TOOL_PREFIX" --with-sysroot="$RASPI_SYSROOT_" --host="$RASPI_TOOL_PREFIX"
 
     - . ~/pp;cd $RASPI_s_;git clone --depth=1 --branch=1.0.11 https://github.com/jedisct1/libsodium.git
     - . ~/pp;cd $RASPI_s_/libsodium/;autoreconf -fi
     - ~/do_compile.sh "libsodium" --prefix="$RASPI_SYSROOT_"/usr --disable-shared --disable-soname-versions --target="$RASPI_TOOL_PREFIX" --with-sysroot="$RASPI_SYSROOT_" --host="$RASPI_TOOL_PREFIX" --enable-minimal --disable-pie
-    - ~/do_package.sh "libsodium" --prefix="$RASPI_SYSROOT_"/usr --disable-shared --disable-soname-versions --target="$RASPI_TOOL_PREFIX" --with-sysroot="$RASPI_SYSROOT_" --host="$RASPI_TOOL_PREFIX" --enable-minimal --disable-pie
+    - ~/do_package.sh "libsodium" --prefix="$INSTALL_DEST" --disable-shared --disable-soname-versions --target="$RASPI_TOOL_PREFIX" --with-sysroot="$RASPI_SYSROOT_" --host="$RASPI_TOOL_PREFIX" --enable-minimal --disable-pie
 
     - . ~/pp;cd $RASPI_s_;git clone https://github.com/TokTok/c-toxcore
     - . ~/pp;cd $RASPI_s_/c-toxcore/;git checkout 895de7ef26e7617769f2271345e414545c2581f8 # v0.1.6
     - . ~/pp;cd $RASPI_s_/c-toxcore/;autoreconf -fi
     - ~/do_compile.sh "c-toxcore" --prefix="$RASPI_SYSROOT_"/usr --disable-soname-versions --host="$RASPI_TOOL_PREFIX" --with-sysroot="$RASPI_SYSROOT_" --disable-testing --disable-rt
-    - ~/do_package.sh "c-toxcore" --prefix="$RASPI_SYSROOT_"/usr --disable-soname-versions --host="$RASPI_TOOL_PREFIX" --with-sysroot="$RASPI_SYSROOT_" --disable-testing --disable-rt
+    - ~/do_package.sh "c-toxcore" --prefix="$INSTALL_DEST" --disable-soname-versions --host="$RASPI_TOOL_PREFIX" --with-sysroot="$RASPI_SYSROOT_" --disable-testing --disable-rt
 
     - cp -av "$RASPI_PKGSDIR"/* $CIRCLE_ARTIFACTS/
 test:
