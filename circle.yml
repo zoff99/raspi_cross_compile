@@ -49,7 +49,7 @@ dependencies:
     - echo 'export PATH="$_PATH";export PKG_CONFIG_PATH="$_PKG_CONFIG_PATH";export CC="$_CC";export CXX="$_CXX";export AR="$_AR";export RANLIB="$_RANLIB";export LD="$_LD"' > ~/pp
     - chmod u+x ~/pp
 
-    - printf '#! /bin/bash\n. ~/pp;rm -Rf ~/build/\nmkdir -p ~/build/\ncd ~/build/;$_s_/"$1"/configure $* && make && make install\n' > ~/do_compile.sh
+    - printf '#! /bin/bash\n. ~/pp;rm -Rf ~/build/\nmkdir -p ~/build/\narg1_="$1";shift;cd ~/build/;$_s_/"$arg1_"/configure $* && make && make install\n' > ~/do_compile.sh
     - chmod a+rx ~/do_compile.sh
     - cat ~/do_compile.sh
 compile:
