@@ -68,9 +68,9 @@ compile:
     - . ~/pp;cd $_s_;git clone --depth=1 --branch=v1.6.0 https://github.com/webmproject/libvpx.git
     - . ~/pp;rm -Rf ~/build/
     - . ~/pp;mkdir -p ~/build/
-    - . ~/pp;cd ~/build/;$_s_/libvpx/configure --prefix="$_SYSROOT_"/usr --disable-examples --disable-unit-tests --target=armv7-android-gcc ; exit 0
-    - . ~/pp;cd ~/build/;make ; exit 0
-    - . ~/pp;cd ~/build/;make install ; exit 0
+    - . ~/pp;cd ~/build/;$_s_/libvpx/configure --prefix="$_SYSROOT_"/usr --disable-examples --disable-unit-tests --target=armv7-linux-gcc --extra-cflags="--sysroot=$_SYSROOT_"
+    - . ~/pp;cd ~/build/;make
+    - . ~/pp;cd ~/build/;make install
 
 
     - . ~/pp;cd $_s_;git clone --depth=1 --branch=v1.1.3 https://github.com/xiph/opus.git
