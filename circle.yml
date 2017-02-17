@@ -45,7 +45,7 @@ dependencies:
     - chmod a+rx ~/do_compile.sh
     - cat ~/do_compile.sh
 
-    - printf '#! /bin/bash\n. ~/pp;rm -Rf ~/build/\nmkdir -p ~/build/\nrm -Rf "$INSTALL_DEST"\narg1_="$1";shift;cd ~/build/;$RASPI_s_/"$arg1_"/configure $* && make && make install && cd "$INSTALL_DEST" && tar -czvf "$PKGSDIR""/"pkg_"$arg1_".tar.gz . && rm -Rf "$INSTALL_DEST" \n' > ~/do_package.sh
+    - printf '#! /bin/bash\n. ~/pp;rm -Rf ~/build/\nmkdir -p ~/build/\nrm -Rf "$INSTALL_DEST"\narg1_="$1";shift;cd ~/build/;$RASPI_s_/"$arg1_"/configure $* && make && make install && cd "$INSTALL_DEST" && tar -czvf "$PKGSDIR""/"pkg_"$arg1_".tar.gz * .??* && rm -Rf "$INSTALL_DEST" \n' > ~/do_package.sh
     - chmod a+rx ~/do_package.sh
     - cat ~/do_package.sh
 compile:
