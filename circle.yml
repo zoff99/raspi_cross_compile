@@ -43,7 +43,7 @@ dependencies:
     - . ~/glo;a=${CUR_ARCH_}_s_;mkdir -p "${!a}"
     - . ~/glo;a=${CUR_ARCH_}_PKGSDIR;mkdir -p "${!a}"
 
-    - . ~/glo;echo 'export PKGSDIR="$'"${CUR_ARCH_}"'_PKGSDIR";export INSTALL_DEST="$'"${CUR_ARCH_}"'_INSTALL_DEST";export PKG_CONFIG_PATH="$'"${CUR_ARCH_}"'_PKG_CONFIG_PATH";export PATH="$'"${CUR_ARCH_}"'_PATH";export CC="$'"${CUR_ARCH_}"'_CC";export CXX="$'"${CUR_ARCH_}"'_CXX";export AR="$'"${CUR_ARCH_}"'_AR";export RANLIB="$'"${CUR_ARCH_}"'_RANLIB";export _s_="$'"${CUR_ARCH_}"'_s_";export _SYSROOT_="$'"${CUR_ARCH_}"'_SYSROOT_";export _HOST_="$'"${CUR_ARCH_}"'_HOST_";export _TARGET_="$'"${CUR_ARCH_}"'_TARGET_";export _TOOL_PREFIX="$'"${CUR_ARCH_}"'_TOOL_PREFIX";export CUR_ARCH_="$'"${CUR_ARCH_}"'";export LD="$'"${CUR_ARCH_}"'_LD"' > ~/pp
+    - . ~/glo;echo 'export PKGSDIR="$'"${CUR_ARCH_}"'_PKGSDIR";export INSTALL_DEST="$'"${CUR_ARCH_}"'_INSTALL_DEST";export PKG_CONFIG_PATH="$'"${CUR_ARCH_}"'_PKG_CONFIG_PATH";export PATH="$'"${CUR_ARCH_}"'_PATH";export CC="$'"${CUR_ARCH_}"'_CC";export CXX="$'"${CUR_ARCH_}"'_CXX";export AR="$'"${CUR_ARCH_}"'_AR";export RANLIB="$'"${CUR_ARCH_}"'_RANLIB";export _s_="$'"${CUR_ARCH_}"'_s_";export _SYSROOT_="$'"${CUR_ARCH_}"'_SYSROOT_";export _HOST_="$'"${CUR_ARCH_}"'_HOST_";export _TARGET_="$'"${CUR_ARCH_}"'_TARGET_";export _TOOL_PREFIX="$'"${CUR_ARCH_}"'_TOOL_PREFIX";export CUR_ARCH_="'"${CUR_ARCH_}"'";export LD="$'"${CUR_ARCH_}"'_LD"' > ~/pp
     - chmod u+x ~/pp
     - cat ~/pp
 
