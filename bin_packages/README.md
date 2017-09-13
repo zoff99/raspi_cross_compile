@@ -10,5 +10,8 @@ PKG=libv4lconvert0; dpkg -L "$PKG" | grep -v '/\.$' | tar -czvf "$PKG".tgz --no-
 find what package a file belongs to:
 
 ```
+dpkg -S <absolute filename including path>
+
+example:
 dpkg -S /usr/include/X11/extensions/render.h
 ```
